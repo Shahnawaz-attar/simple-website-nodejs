@@ -1,0 +1,47 @@
+<%- include('common/header.ejs')%>
+<%- include('common/page_title.ejs', {page_title: page_title})%>
+<%- include('common/menus.ejs')%>
+
+<div class="container-fluid mb-4">
+    <div class="container">
+        <div class="col-12 text-center contact_margin_svnit ">
+            <div class="text-center fh5co_heading py-2">Contact List</div>
+        </div>
+        <div class="row">
+
+            <div class="col-12 col-md-12 col-12 mx-auto">
+                <!-- create table to show all contacts -->
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Messages</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% k=0; %>
+                        <% contacts.forEach(function(post) { %>
+                            <tr>
+                                <th scope="row"><%= ++k %></th>
+                                <td><%= post.name %></td>
+                                <td><%= post.message %></td>
+                                <td>
+  
+                                    <a href="/admin/contact/delete/<%= post.id %>" class="btn btn-danger btn-sm delete_post"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+              
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<%- include('common/footer.ejs') %>

@@ -23,8 +23,16 @@ const save_contact = async (name, message) => {
     return await contact.create({ name, message });
 }
 
+//get all contacts
+const get_contacts = async () => {
+    return await contact.find({});
+}
+//delete_contact
+const delete_contact = async (id) => {
+    return await contact.deleteOne({ _id: ObjectId(id) });
+}
 
 module.exports = {
     check_admin,
-    save_contact
+    save_contact,get_contacts,delete_contact
 }

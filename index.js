@@ -229,6 +229,26 @@ app.post('/admin/checklogin', function (req, resp, next) {
 }
 )
 
+// get all contacts
+app.get('/admin/contacts', (_, res) => {
+  if (!check_admin()) {
+    return res.redirect('/admin/login');
+  }
+  const page_title = 'Contacts';
+  const get_contacts = admin.get_contacts();
+  get_contacts.then(contacts => {
+    res.render('admin/contacts', { contacts, page_title });
+  }
+  );
+});
+
+///admin/contact/delete/
+app.get('/admin/contact/delete/:id', (req, res) => {
+  admin.delete_contact(req.params.id);
+  res.send({ status: 'success', url: '/admin/contacts' });
+}
+);
+
 
 //logout
 app.get('/admin/logout', (req, resp) => {
